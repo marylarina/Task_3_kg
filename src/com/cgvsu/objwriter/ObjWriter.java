@@ -10,12 +10,13 @@ import java.util.ArrayList;
 
 public class ObjWriter {
 
-    public static String write(Model model) {
+    public static String write(final Model model) {
         String str = "";
 
         str += writeVertex(model.vertices);
         str += writeTextureVertex(model.textureVertices);
         str += writeNormals(model.normals);
+
         str += writePolygons(model.polygons);
 
         return str;

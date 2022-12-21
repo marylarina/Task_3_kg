@@ -5,8 +5,10 @@ import com.cgvsu.objreader.ObjReader;
 import com.cgvsu.objwriter.ObjWriter;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -35,9 +37,12 @@ public class Main {
 
         Model model1 = ObjReader.read(fileContent);
 
+        System.out.println(ObjWriter.writePolygons(model.polygons));
+
         FileInputStream fis2 = new FileInputStream("C:/Users/Мария/Downloads/ObjReaderInitial/test.obj");
-        PrintWriter printWriter = new PrintWriter("test.obj");
-        printWriter.write(ObjWriter.write(model1));
+        FileOutputStream fileOutputStream = new FileOutputStream("test.obj");
+        byte [] str = ObjWriter.write(model).getBytes(StandardCharsets.UTF_8);
+        fileOutputStream.write(str);
         fis2.close();
     }
 }
